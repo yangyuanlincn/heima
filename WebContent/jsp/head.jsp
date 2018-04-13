@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--
             	时间：2015-12-30
             	描述：菜单栏
@@ -21,13 +21,17 @@
 					href="${pageContext.request.contextPath }/user?method=registUI">注册</a></li>
 			</c:if>
 			<c:if test="${not empty user }">
-							${user.name }:您好
-							<li><a
-					href="${pageContext.request.contextPath }/user?method=logout">退出</a></li>
-				<li><a
-					href="${pageContext.request.contextPath }/user?method=registUI">我的订单</a></li>
+				${user.name }
+				<li>
+					<a href="${pageContext.request.contextPath }/user?method=logout">退出</a>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath }/order?method=findAll&currPage=1">我的订单</a>
+				</li>
+				
 			</c:if>
-			<li><a href="cart.htm">购物车</a></li>
+			<li><a href="${pageContext.request.contextPath }/jsp/cart.jsp">购物车</a></li>
+
 		</ol>
 	</div>
 </div>
@@ -72,15 +76,11 @@
 	</nav>
 </div>
 <script>
-	$(function(){
-		//发送ajax请求
+	$(function() {
 		$.get("${pageContext.request.contextPath}/category?method=findAll",function(data){
-			//获取menu的ul标签
 			var $ul=$("#menuId");
-			
-			//遍历数组
 			$(data).each(function(){
-				$ul.append($("<li><a href='${pageContext.request.contextPath}/product?method=findByPage&cid="+this.cid+"&currPage=1'>"+this.cname+"</a></li>"));
+				$ul.append($("<li><a href='${pageContext.request.contextPath}/product?method=findByPage&cid="+this.cid+"&currPage=1'>"+this.cname+"<a/></li>"));
 			});
 		},"json");
 	});

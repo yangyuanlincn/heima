@@ -18,7 +18,7 @@ public class User {
 	private String email;
 	private String telephone;
 	
-	private Date  birthday;
+	private String  birthday;
 	private String  sex;
 	private Integer state=0;//激活状态  1:激活    0:未激活
 	private String  code;
@@ -58,10 +58,10 @@ public class User {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	public String getSex() {

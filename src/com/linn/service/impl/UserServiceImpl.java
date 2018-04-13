@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService{
 		
 		//email:收件人地址
 		//emailMsg:邮件的内容
-		String emailMsg="欢迎您注册成我们的一员,<a href='http://localhost/store/user?method=active&code="+user.getCode()+"'>点此激活</a>";
+		String emailMsg="欢迎您注册成我们的一员,<a href='http://localhost/store/user?method=activate&code="+user.getCode()+"'>点此激活</a>";
 		MailUtils.sendMail(user.getEmail(), emailMsg);
 	}
 
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService{
 	 * @throws Exception 
 	 */
 	@Override
-	public User active(String code) throws Exception {
+	public User activate(String code) throws Exception {
 		UserDao dao=(UserDao) BeanFactory.getBean("UserDao");
 		//1.通过code获取一个用户
 		User user=dao.getByCode(code);

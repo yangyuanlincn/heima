@@ -2,6 +2,7 @@ package com.linn.web.servlet;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,13 +40,12 @@ public class BaseServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException();
 		} 
 
 	}
 	
 	
-	public String index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		return null;
 	}
 	

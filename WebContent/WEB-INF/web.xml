@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <filter>
     <filter-name>EncodingFilter</filter-name>
-    <filter-class>com.itheima.web.filter.EncodingFilter</filter-class>
+    <filter-class>com.linn.web.filter.EncodingFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>EncodingFilter</filter-name>
@@ -12,7 +12,7 @@
     <description></description>
     <display-name>BaseServlet</display-name>
     <servlet-name>BaseServlet</servlet-name>
-    <servlet-class>com.itheima.web.servlet.BaseServlet</servlet-class>
+    <servlet-class>com.linn.web.servlet.BaseServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>BaseServlet</servlet-name>
@@ -30,7 +30,7 @@
     <description></description>
     <display-name>UserServlet</display-name>
     <servlet-name>UserServlet</servlet-name>
-    <servlet-class>com.itheima.web.servlet.UserServlet</servlet-class>
+    <servlet-class>com.linn.web.servlet.UserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
@@ -40,7 +40,7 @@
     <description></description>
     <display-name>IndexServlet</display-name>
     <servlet-name>IndexServlet</servlet-name>
-    <servlet-class>com.itheima.web.servlet.IndexServlet</servlet-class>
+    <servlet-class>com.linn.web.servlet.IndexServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>IndexServlet</servlet-name>
@@ -50,7 +50,7 @@
     <description></description>
     <display-name>CategoryServlet</display-name>
     <servlet-name>CategoryServlet</servlet-name>
-    <servlet-class>com.itheima.web.servlet.CategoryServlet</servlet-class>
+    <servlet-class>com.linn.web.servlet.CategoryServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CategoryServlet</servlet-name>
@@ -60,10 +60,36 @@
     <description></description>
     <display-name>ProductServlet</display-name>
     <servlet-name>ProductServlet</servlet-name>
-    <servlet-class>com.itheima.web.servlet.ProductServlet</servlet-class>
+    <servlet-class>com.linn.web.servlet.ProductServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ProductServlet</servlet-name>
     <url-pattern>/product</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>CodeServlet</servlet-name>
+  	<servlet-class>com.linn.web.servlet.CodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CodeServlet</servlet-name>
+  	<url-pattern>/code</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>CartServlet</servlet-name>
+  	<servlet-class>com.linn.web.servlet.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CartServlet</servlet-name>
+  	<url-pattern>/cart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>OrderServlet</servlet-name>
+  	<servlet-class>com.linn.web.servlet.OrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>OrderServlet</servlet-name>
+  	<url-pattern>/order</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>

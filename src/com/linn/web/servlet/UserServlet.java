@@ -48,7 +48,7 @@ public class UserServlet extends BaseServlet {
 		User user = new User();
 		
 		//注册自定义转化器
-		ConvertUtils.register(new MyConventer(), Date.class);
+		//ConvertUtils.register(new MyConventer(), Date.class);
 		BeanUtils.populate(user, request.getParameterMap());
 		
 		//1.1 设置用户id
@@ -77,13 +77,13 @@ public class UserServlet extends BaseServlet {
 	 * @return
 	 * @throws Exception 
 	 */
-	public String active(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String activate(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//1.获取激活码
 		String code = request.getParameter("code");
 		
 		//2.调用service完成激活
 		UserService s=(UserService) BeanFactory.getBean("UserService");
-		User user=s.active(code);
+		User user=s.activate(code);
 		
 		if(user==null){
 			//通过激活码没有找到用户
@@ -117,10 +117,20 @@ public class UserServlet extends BaseServlet {
 	 * @throws Exception 
 	 */
 	public String login(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//1.获取用户名和密码
+		//1.获取用户名,密码和验证码
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
-		password=MD5Utils.md5(password);
+		String rCode=request.getParameter("code");
+		String sCode=(String) request.getSession().getAttribute("code");
+		System.out.println(rCode+"   "+sCode);
+		System.out.println(username+"   "+password);
+		//1.1判断验证码是否一致
+		if(!rCode.equalsIgnoreCase(sCode)||rCode==null||sCode==null||rCode.trim().length()==0) {
+			request.setAttribute("msg", "验证码错误");
+			return "/jsp/login.jsp";
+		}
+		request.getSession().removeAttribute("code");
+		password=MD5Utils.md5(password);//md5加密
 		
 		//2.调用serive完成登录操作 返回user
 		UserService s=(UserService) BeanFactory.getBean("UserService");
