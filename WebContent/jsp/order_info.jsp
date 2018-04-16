@@ -84,6 +84,7 @@
 				<hr/>
 				<form class="form-horizontal" id="formId" action="${pageContext.request.contextPath }/order?method=pay" method="post" style="margin-top:5px;margin-left:150px;">
 					<div class="form-group">
+					<input type="hidden" name="oid" value="${order.oid }"/>
 						<label for="username" class="col-sm-1 control-label">地址</label>
 						<div class="col-sm-5">
 							<input type="text" name="toaddress" class="form-control" id="address" placeholder="请输入收货地址">

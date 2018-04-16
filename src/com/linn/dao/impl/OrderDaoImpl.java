@@ -68,7 +68,7 @@ public class OrderDaoImpl implements OrderDao {
 		QueryRunner qr=new QueryRunner(DataSourceUtils.getDataSource());
 		//1.获取订单除List<OrderItem>之外的信息
 		String sql="select * from orders where oid=?";
-		Order order = qr.query(sql, new BeanHandler<>(Order.class));
+		Order order = qr.query(sql, new BeanHandler<>(Order.class),oid);
 		
 		//2.封装OrderItem
 		String sql_2="selet * from orderitem,product where orderitem.pid=product.pid and orderitem.oid=?";
@@ -86,7 +86,7 @@ public class OrderDaoImpl implements OrderDao {
 			//2.4将orderitem加入order的items
 			order.getItems().add(oi);
 		}
-		return null;
+		return order;
 	}
 
 	
@@ -108,10 +108,9 @@ public class OrderDaoImpl implements OrderDao {
 		  `telephone` varchar(20) DEFAULT NULL,
 		  `uid` varchar(32) DEFAULT NULL,
 		 */
-		String sql="update orders set oid=?,ordertime=?,total=?,state=?,address=?,name=?,telphone=?,uid=?";
+		String sql="update orders set oid=?,ordertime=?,total=?,state=?,address=?,name=?,telphone=?,uid=? where oid=?";
 		qr.update(sql, order.getOid(),order.getOrdertime(),order.getTotal(),
-				order.getState(),order.getAddress(),order.getName(),order.getTelephone(),order.getUser().getUid()
-				);
+				order.getState(),order.getAddress(),order.getName(),order.getTelephone(),order.getUser().getUid(),order.getOid());
 	}
 
 	/**

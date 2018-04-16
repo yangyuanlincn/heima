@@ -81,20 +81,34 @@
 			</div>
 			<div style="text-align: center;">
 				<ul class="pagination">
-					<li class="disabled"><a href="${pageContext.request.contextPath }/order?method=findAll&currPage=${currPage-1 }" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+					<c:if test="${bean.currPage==1 }">
+					<li class="disabled"><a href="${pageContext.request.contextPath }/order?method=findAll&currPage=${bean.currPage-1 }" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+					</c:if>
+					<c:if test="${bean.currPage!=1 }">
+					<li ><a href="${pageContext.request.contextPath }/order?method=findAll&currPage=${bean.currPage-1 }" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+					</c:if>
 					<c:forEach begin="1" end="${bean.totalPage }" var="n">
 					<c:if test="${bean.currPage==n }">
-						<li class="active"><a href="#">n</a></li>
+						<li class="active"><a href="${pageContext.request.contextPath }/order?method=findAll&currPage=${n}ss">${n }</a></li>
 					</c:if>
 					<c:if test="${bean.currPage!=n }">
-						<li ><a href="#">n</a></li>
+						<li ><a href="${pageContext.request.contextPath }/order?method=findAll&currPage=${n}">${n }</a></li>
 					</c:if>
 					</c:forEach>
-					<li>
-						<a href="${pageContext.request.contextPath }/order?method=findAll&currPage=${currPage+1 }" aria-label="Next">
+					<c:if test="${bean.currPage==bean.totalPage }">
+					<li class="disabled">
+						<a href="${pageContext.request.contextPath }/order?method=findAll&currPage=${bean.currPage+1 }" aria-label="Next">
 							<span aria-hidden="true">&raquo;</span>
 						</a>
 					</li>
+					</c:if>
+					<c:if test="${bean.currPage!=bean.totalPage }">
+					<li>
+						<a href="${pageContext.request.contextPath }/order?method=findAll&currPage=${bean.currPage+1 }" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+					</c:if>
 				</ul>
 			</div>
 		</div>

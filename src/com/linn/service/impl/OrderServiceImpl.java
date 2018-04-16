@@ -57,17 +57,19 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public PageBean<Order> findAllByPage(User user,int currPage) throws Exception {
-		//1.封装pagebean
+		//1.封装PageBean
 		PageBean<Order> bean=new PageBean<>();
 		bean.setCurrPage(currPage);
 		int pageSize=6;//每页显示的条数
 		bean.setPageSize(pageSize);
 		
-		//2.调用OrderDao获取List<Order> 和 总订单条数 totalcount
+		//2.调用OrderDao获取List<Order> 和 总订单条数 totalCount
 		OrderDao od=(OrderDao) BeanFactory.getBean("OrderDao");
 		int totalCount=od.getTotalCount(user);
 		List<Order> list=od.findAllByPage(user,currPage,pageSize);
-		return null;
+		bean.setList(list);
+		bean.setTotalCount(totalCount);
+		return bean;
 	}
 	
 }

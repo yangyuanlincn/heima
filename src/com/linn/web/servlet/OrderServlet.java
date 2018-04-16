@@ -50,7 +50,7 @@ public class OrderServlet extends BaseServlet {
 			OrderItem oItem = new OrderItem();
 			oItem.setCount(cItem.getCount());
 			oItem.setProduct(cItem.getProduct());
-			oItem.setSubtota(cItem.getSubtotal());
+			oItem.setSubtotal(cItem.getSubtotal());
 			oItem.setOrder(order);
 			oItem.setItemid(UUIDUtils.getId());
 			order.getItems().add(oItem);
@@ -62,6 +62,7 @@ public class OrderServlet extends BaseServlet {
 
 		// 5.清空购物车
 		cart.clear();
+		request.getSession().setAttribute("cart", cart);
 
 		// 6.把order放入request域中，请求转发
 		request.setAttribute("order", order);
@@ -71,17 +72,17 @@ public class OrderServlet extends BaseServlet {
 
 	public String pay(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 1.获取参数
-		String address = request.getParameter("toaddress");
+		String toaddress = request.getParameter("toaddress");
 		String toname = request.getParameter("toname");// 收件人姓名
 		String totelphone = request.getParameter("totelphone");// 收件人电话
 		String oid = request.getParameter("oid");// 订单号
-
+		System.out.println(toaddress+toname+totelphone);
 		// 2.通过oid获取order
-		OrderService os = (OrderService) BeanFactory.getBean(oid);
+		OrderService os = (OrderService) BeanFactory.getBean("OrderService");
 		Order order = os.getOrderById(oid);
 
 		// 3.更新order表
-		order.setAddress(address);
+		order.setAddress(toaddress);
 		order.setName(toname);
 		order.setTelephone(totelphone);
 		os.update(order);

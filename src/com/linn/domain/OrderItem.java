@@ -30,7 +30,7 @@ public class OrderItem implements Serializable{
 	public Double getSubtotal() {
 		return subtotal;
 	}
-	public void setSubtota(Double subtotal) {
+	public void setSubtotal(Double subtotal) {
 		this.subtotal = subtotal;
 	}
 	public Product getProduct() {
